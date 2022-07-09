@@ -230,6 +230,11 @@ Jó munkát!
     Mely országokhoz nem tartozik egy város sem?
     Írj lekérdezést, amely visszaadja azoknak az országoknak az összes adatát, amelyekhez nem tartozik város az adatbázisban!
 
+    SELECT country.* FROM country
+    LEFT JOIN city
+    on city.CountryCode= country.Code
+    WHERE city.name IS NULL
+
 
 
     Elvárt eredmény:
