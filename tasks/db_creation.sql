@@ -43,6 +43,11 @@ Az adatbázisnak képesnek kell lennie a következő adatok tárolására:
         user_active BOOL,
         user_regdate DATETIME NOT NULL DEFAULT 1900-01-01 00:00:01);
 
+        SQL databaseben:
+        CREATE TABLE `newdatabase`.`registered users` (`id` INT NOT NULL AUTO_INCREMENT ,
+        `user_name` VARCHAR(130) NOT NULL , `user_email` VARCHAR(130) NOT NULL , `gender_type` ENUM(male,female) NOT NULL ,
+        `user_active` BOOLEAN NOT NULL , `user_regdate` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
 
     2. a regisztrált felhasználók által egymásnak küldött üzenetek adatai
         - kötelező adatok: küldő, címzett, üzenet szövege, az üzenet küldésének időpontja,
