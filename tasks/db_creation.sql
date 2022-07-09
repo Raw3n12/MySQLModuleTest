@@ -84,6 +84,6 @@ Bónusz feladat (5 pont)
 Adj hozzá adatokat mindegyik táblához!
 (Az adatoknak nem kell valósnak lenniük. Egy felhasználói email-cím lehet például: 'valami@valami.va')
 INSERT INTO registered_usersmails VALUES (1,Sárkány,Királylány,Megeszlek,1432-10-11 22:10:12)
-INSERT INTO registered_users VALUES (1,Sárkány,sarkany@kirallany.org,1,1432-10-9 22:10:12)
+INSERT INTO registered_users VALUES (1,Sárkány,sarkany@kirallany.org,male,1,1432-10-9 22:10:12)
 
 */
