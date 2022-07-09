@@ -33,27 +33,34 @@ Az adatbázisnak képesnek kell lennie a következő adatok tárolására:
     1. regisztrált felhasználók adatai
         - kötelező adatok: név, email-cím, jelszó, aktív felhasználó-e, a regisztrálás időpontja
 
-
+        Create database IF NOT EXIST newdatabase
+        Use database_newdatabase
         CREATE TABLE IF NOT EXIST registered_users (
         id INT PRIMARY KEY,
-        user_name VARCHAR(100),
-        user_email VARCHAR(100),
-        user_active BOOLEAN,
-        user_regdate DATETIME);
+        user_name VARCHAR(130)NOT NULL DEFAULT ‘anonymous’,
+        user_email VARCHAR(130)NOT NULL DEFAULT ‘anonymous@anonymus.com’,
+        gender_type ENUM('male','female')
+        user_active BOOL,
+        user_regdate DATETIME NOT NULL DEFAULT 1900-01-01 00:00:01);
 
 
     2. a regisztrált felhasználók által egymásnak küldött üzenetek adatai
         - kötelező adatok: küldő, címzett, üzenet szövege, az üzenet küldésének időpontja,
           továbbá ha az üzenet egy korábban kapottra válasz, akkor hivatkozás a megválaszolt üzenetre
 
+          Create database IF NOT EXIST newmaildatabase
+          Use database_newmaildatabase
           CREATE TABLE IF NOT EXIST registered_usersmails (
           mail_id INT PRIMARY KEY,
           user_name_from VARCHAR(100),
           user_name_to VARCHAR(100),
           usermail_text TEXT;
-          usermail_date DATETIME,
+          usermail_oldtext TEXT;
+          usermail_date DATETIME NOT NULL DEFAULT 1900-01-01 00:00:01,
           FOREIGN KEY (user_name_from) REFERENCES registered_users(user_name),
           FOREIGN KEY (user_name_to) REFERENCES registered_users(user_name),
+          FOREIGN KEY (usermail_text) REFERENCES registered_users(usermail_oldtext),
+
 
 
 
