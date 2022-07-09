@@ -32,9 +32,31 @@ Nincs lehetőség több címzett megadására - azaz egy üzenetet csak egy felh
 Az adatbázisnak képesnek kell lennie a következő adatok tárolására:
     1. regisztrált felhasználók adatai
         - kötelező adatok: név, email-cím, jelszó, aktív felhasználó-e, a regisztrálás időpontja
+
+
+        CREATE TABLE IF NOT EXIST registered_users (
+        id INT PRIMARY KEY,
+        user_name VARCHAR(100),
+        user_email VARCHAR(100),
+        user_active BOOLEAN,
+        user_regdate DATETIME);
+
+
     2. a regisztrált felhasználók által egymásnak küldött üzenetek adatai
         - kötelező adatok: küldő, címzett, üzenet szövege, az üzenet küldésének időpontja,
           továbbá ha az üzenet egy korábban kapottra válasz, akkor hivatkozás a megválaszolt üzenetre
+
+          CREATE TABLE IF NOT EXIST registered_usersmails (
+          mail_id INT PRIMARY KEY,
+          user_name_from VARCHAR(100),
+          user_name_to VARCHAR(100),
+          usermail_text TEXT;
+          usermail_date DATETIME,
+          FOREIGN KEY (user_name_from) REFERENCES registered_users(user_name),
+          FOREIGN KEY (user_name_to) REFERENCES registered_users(user_name),
+
+
+
 
 Kritériumok az adatbázissal kapcsolatban:
     - legalább kettő, legfeljebb négy táblát tartalmazzon
@@ -54,5 +76,7 @@ Bónusz feladat (5 pont)
 
 Adj hozzá adatokat mindegyik táblához!
 (Az adatoknak nem kell valósnak lenniük. Egy felhasználói email-cím lehet például: 'valami@valami.va')
+INSERT INTO registered_usersmails VALUES (1,Sárkány,Királylány,Megeszlek,1432-10-11 22:10:12)
+INSERT INTO registered_users VALUES (1,Sárkány,sarkany@kirallany.org,1,1432-10-9 22:10:12)
 
 */
